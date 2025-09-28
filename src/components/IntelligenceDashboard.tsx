@@ -9,9 +9,14 @@ interface IntelligenceDashboardProps {
   searchResults: any[];
   summaries: string[];
   isAnalyzing: boolean;
+  overview: {
+    keyFindings: string[];
+    trends: string[];
+    strategicImplications: string;
+  } | null;
 }
 
-export function IntelligenceDashboard({ searchResults, summaries, isAnalyzing }: IntelligenceDashboardProps) {
+export function IntelligenceDashboard({ searchResults, summaries, isAnalyzing, overview }: IntelligenceDashboardProps) {
   const mockInsights = [
     {
       title: "AI Threat Detection",
@@ -42,6 +47,32 @@ export function IntelligenceDashboard({ searchResults, summaries, isAnalyzing }:
   return (
     <main className="flex-1 bg-dashboard-main p-6 overflow-auto">
       <div className="max-w-7xl mx-auto space-y-6">
+        {/* AI Analysis Summary */}
+        {summaries.length > 0 && (
+          <Card className="border-border">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <Brain className="h-5 w-5 text-primary" />
+                AI Analysis Summary
+              </CardTitle>
+              <CardDescription>
+                Automated insights from latest intelligence data
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-4">
+                {summaries.map((summary, index) => (
+                  <div key={index} className="p-4 bg-surface rounded-lg border border-border">
+                    <p className="text-sm text-foreground leading-relaxed">
+                      {summary}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
+        )}
+
         {/* Key Insights */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {mockInsights.map((insight, index) => {
@@ -119,31 +150,7 @@ export function IntelligenceDashboard({ searchResults, summaries, isAnalyzing }:
           </CardContent>
         </Card>
 
-        {/* AI Summaries */}
-        {summaries.length > 0 && (
-          <Card className="border-border">
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <Brain className="h-5 w-5 text-primary" />
-                AI Analysis Summary
-              </CardTitle>
-              <CardDescription>
-                Automated insights from latest intelligence data
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <div className="space-y-4">
-                {summaries.map((summary, index) => (
-                  <div key={index} className="p-4 bg-surface rounded-lg border border-border">
-                    <p className="text-sm text-foreground leading-relaxed">
-                      {summary}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
-        )}
+
 
         {isAnalyzing && (
           <Card className="border-border">
