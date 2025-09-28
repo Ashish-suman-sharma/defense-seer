@@ -55,7 +55,7 @@ export function IntelligenceHeader({ searchQuery, onSearchChange, onSearch }: In
                 value={searchQuery}
                 onChange={handleSearchChange}
                 onKeyPress={handleKeyPress}
-                className="pl-10 h-12 bg-background border-border focus:ring-primary"
+                className="pl-10 h-12 bg-background border-border focus:ring-primary text-input-foreground"
               />
             </div>
             {showSuggestions && searchQuery.length >= 2 && (

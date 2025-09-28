@@ -50,7 +50,8 @@ All colors MUST be HSL. Focus: Defense Technology Intelligence
     
     /* Borders & Inputs */
     --border: 0 0% 89.8%;
-    --input: 0 0% 89.8%;
+    --input: 0 0% 100%;
+    --input-foreground: 0 0% 15%;
     --ring: 214 100% 27%;
     
     /* Intelligence Dashboard Specific */
